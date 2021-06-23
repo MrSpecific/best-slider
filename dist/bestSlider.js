@@ -15,7 +15,7 @@
 		exports["bestSlider"] = factory();
 	else
 		root["bestSlider"] = factory();
-})(self, function() {
+})(this, function() {
 return /******/ (() => { // webpackBootstrap
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
@@ -26,7 +26,7 @@ return /******/ (() => { // webpackBootstrap
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/**\n * Function factory\n */\n const bestSlider = () => ({\n  config,\n  init,\n});\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (bestSlider);\n\n\n//# sourceURL=webpack://bestSlider/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nconst config = {\n  thing: \"Thing\",\n};\n\nconst init = () => {\n  console.log('TESting');\n}\n\n/**\n * Function factory\n */\n const bestSlider = () => ({\n  config,\n  init,\n});\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (bestSlider);\n\n\n//# sourceURL=webpack://bestSlider/./src/index.js?");
 
 /***/ })
 

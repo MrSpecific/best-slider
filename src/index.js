@@ -1,3 +1,11 @@
+const config = {
+  thing: "Thing",
+};
+
+const init = () => {
+  console.log('TESting');
+}
+
 /**
  * Function factory
  */

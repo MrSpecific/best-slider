@@ -9,5 +9,6 @@ module.exports = {
       name: 'bestSlider',
       type: 'umd',
     },
+    globalObject: 'this',
   },
 };
