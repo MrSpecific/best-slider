@@ -2,6 +2,7 @@
  * Slider function factory
  */
 const bestSlider = (args = {}) => {
+  // Internal Objects
   let config = {
     thing: "Thing",
     initialSlide: 1,
@@ -13,6 +14,7 @@ const bestSlider = (args = {}) => {
 
   let callbacks = [];
 
+  // Set the slider to a specific slide
   const setSlide = (slide = config.initialSlide) => {
     state.activeSlide = Math.random();
 
@@ -28,15 +30,13 @@ const bestSlider = (args = {}) => {
     return state;
   };
 
+  // Add a callback that will be triggered on change
   const addCallback = (newCallback) => {
     callbacks.push(newCallback);
   };
 
-  const doCallbacks = () => {
-    if (callbacks.length) {
-      callbacks.forEach((callback) => callback(state));
-    }
-  };
+  // Do all callbacks in the queue
+  const doCallbacks = () => (callbacks.length && callbacks.forEach((callback) => callback(state)));
 
   if (!init()) return false;
 
