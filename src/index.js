@@ -4,19 +4,19 @@
 const bestSlider = (args = {}) => {
   // Internal Objects
   let config = {
-    thing: "Thing",
     initialSlide: 1,
   };
 
   let state = {
     activeSlide: null,
+    totalSlides: null,
   };
 
   let callbacks = [];
 
   // Set the slider to a specific slide
   const setSlide = (slide = config.initialSlide) => {
-    state.activeSlide = Math.random();
+    state.activeSlide = slide;
 
     doCallbacks();
   };
