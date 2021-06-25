@@ -5,7 +5,7 @@ const bestSlider = (args = {}) => {
   // Internal Objects
   let config = {
     initialSlide: 1,
-    totalSlides: null,
+    slider: null,
     slides: null,
     previousButton: null,
     nextButton: null,
@@ -13,14 +13,13 @@ const bestSlider = (args = {}) => {
 
   let state = {
     activeSlide: null,
+    totalSlides: null,
   };
 
   let callbacks = [];
 
   //
-  const getSlideIndex = (changeAmount) => {
-
-  }
+  const getSlideIndex = (changeAmount) => {};
 
   // Set the slider to a specific slide
   const setSlide = (slide = config.initialSlide) => {
@@ -31,20 +30,28 @@ const bestSlider = (args = {}) => {
 
   const previous = () => {
     setSlide(getSlideIndex(-1));
-  }
+  };
 
   const next = () => {
     setSlide(getSlideIndex(1));
-  }
+  };
 
   // Initialize
   const init = () => {
     // Merge passed options with default configuration
     config = { ...config, ...args };
-
+    updateInitialState();
     doCallbacks();
 
     return state;
+  };
+
+  // Update initial state
+  const updateInitialState = () => {
+    const { slider } = config;
+
+    const totalSlides = slider.childElementCount;
+    state.totalSlides = totalSlides;
   };
 
   // Add a callback that will be triggered on change
@@ -53,7 +60,8 @@ const bestSlider = (args = {}) => {
   };
 
   // Do all callbacks in the queue
-  const doCallbacks = () => (callbacks.length && callbacks.forEach((callback) => callback(state)));
+  const doCallbacks = () =>
+    callbacks.length && callbacks.forEach((callback) => callback(state));
 
   if (!init()) return false;
 
