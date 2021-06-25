@@ -40,6 +40,7 @@ const bestSlider = (args = {}) => {
   const init = () => {
     // Merge passed options with default configuration
     config = { ...config, ...args };
+
     updateInitialState();
     doCallbacks();
 
@@ -50,8 +51,8 @@ const bestSlider = (args = {}) => {
   const updateInitialState = () => {
     const { slider } = config;
 
-    const totalSlides = slider.childElementCount;
-    state.totalSlides = totalSlides;
+    // const totalSlides = slider.childElementCount;
+    state.totalSlides = slider?.childElementCount || null;
   };
 
   // Add a callback that will be triggered on change
