@@ -18,7 +18,7 @@ const bestSlider = (args = {}) => {
 
   let callbacks = [];
 
-  //
+  // Get the index of a slide based on an amount of change
   const getSlideIndex = (changeAmount) => {};
 
   // Set the slider to a specific slide
