@@ -5,7 +5,6 @@ const bestSlider = (args = {}) => {
   // Internal Objects
   let config = {
     initialSlide: 1,
-    totalSlides: null,
     slider: null,
     slides: null,
     previousButton: null,
@@ -14,7 +13,7 @@ const bestSlider = (args = {}) => {
 
   let state = {
     activeSlide: null,
-    previousSlide: null,
+    totalSlides: null,
   };
 
   let callbacks = [];
@@ -41,10 +40,18 @@ const bestSlider = (args = {}) => {
   const init = () => {
     // Merge passed options with default configuration
     config = { ...config, ...args };
-
+    updateInitialState();
     doCallbacks();
 
     return state;
+  };
+
+  // Update initial state
+  const updateInitialState = () => {
+    const { slider } = config;
+
+    const totalSlides = slider.childElementCount;
+    state.totalSlides = totalSlides;
   };
 
   // Add a callback that will be triggered on change
