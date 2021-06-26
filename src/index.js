@@ -19,28 +19,32 @@ const bestSlider = (args = {}) => {
 
   let callbacks = [];
 
+  // Check whether new index is allowable based on total # of slides
   const newIndexIsOutsideOfRange = (newIndex) => {
     const { totalSlides } = state;
 
     return newIndex < totalSlides || newIndex > totalSlides;
   };
 
+  // Get new slide index based on change amount
   const getSlideIndex = (changeAmount) => {
     const { activeSlide, totalSlides } = state;
     const { wrapAround } = config;
 
     let tempIndex = activeSlide + changeAmount;
-    let newIndex = activeSlide;
+    let newIndex;
 
-    console.log(tempIndex);
-
-    if (newIndexIsOutsideOfRange(tempIndex) && wrapAround) {
-      if (tempIndex < 1) {
-        newIndex = totalSlides;
+    if (newIndexIsOutsideOfRange(tempIndex)) {
+      if (wrapAround) {
+        if (tempIndex < 1) {
+          newIndex = totalSlides;
+        } else {
+          newIndex = 1;
+        }
       } else {
-        newIndex = 1;
+        newIndex = activeSlide;
       }
-    } else if (!wrapAround) {
+    } else {
       newIndex = tempIndex;
     }
 
