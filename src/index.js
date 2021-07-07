@@ -23,7 +23,7 @@ const bestSlider = (args = {}) => {
   const newIndexIsOutsideOfRange = (newIndex) => {
     const { totalSlides } = state;
 
-    return newIndex < totalSlides || newIndex > totalSlides;
+    return newIndex < 1 || newIndex > totalSlides;
   };
 
   // Get new slide index based on change amount
@@ -31,16 +31,15 @@ const bestSlider = (args = {}) => {
     const { activeSlide, totalSlides } = state;
     const { wrapAround } = config;
 
-    let tempIndex = activeSlide + changeAmount;
+    // Take into account change values that would result in multiple wraparounds
+    const adjustedChangeAmount = changeAmount % totalSlides;
+
+    let tempIndex = activeSlide + adjustedChangeAmount;
     let newIndex;
 
     if (newIndexIsOutsideOfRange(tempIndex)) {
       if (wrapAround) {
-        if (tempIndex < 1) {
-          newIndex = totalSlides;
-        } else {
-          newIndex = 1;
-        }
+        newIndex = totalSlides + tempIndex;
       } else {
         newIndex = activeSlide;
       }
@@ -68,6 +67,10 @@ const bestSlider = (args = {}) => {
 
   const next = () => {
     setSlide(getSlideIndex(1));
+  };
+
+  const changeSlide = (changeAmount) => {
+    setSlide(getSlideIndex(changeAmount));
   };
 
   // Initialize
@@ -111,6 +114,7 @@ const bestSlider = (args = {}) => {
     setSlide,
     previous,
     next,
+    changeSlide,
   };
 };
 
